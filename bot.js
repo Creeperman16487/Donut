@@ -104,7 +104,7 @@ s4d.client.on('message', async (s4dmessage) => {
 
             }
         });
-    } else if ((s4dmessage.content) == '!jokes') {
+    } else if ((s4dmessage.content) == ';jokes') {
         Jokes = ['Why do we ask actors to "break a leg"?', 'Hear new restaurant named Karma?', 'Did you hear about the claustrophobic astronaut?', "Why does scientist don't trust atoms?", 'A man tells his doctor, “Doc, help me. I’m addicted to Twitter!” What did the doc say?', 'What’s the different between a cat and a comma?', 'What did the left eye say to the right eye?', 'What do you call a fake noodle?', 'What did the shark say when he ate the clownfish?'];
         RandomJokes = listsGetRandomItem(Jokes, false);
         (s4dmessage.channel).send(RandomJokes);

@@ -37,7 +37,7 @@
                         s4d.client.emit(packet.t, guild, channel, message, member, packet.d.emoji.name);
                     }
                 });
-                s4d.client.login('Your bot token').catch((e) => { s4d.tokenInvalid = true; s4d.tokenError = e; });
+                s4d.client.login(process.env.TOKEN).catch((e) => { s4d.tokenInvalid = true; s4d.tokenError = e; });
 
 s4d.client.on('ready', async () => {
   s4d.client.user.setActivity(String('lol'));

@@ -41,12 +41,13 @@
 
 s4d.client.on('ready', async () => {
   s4d.client.user.setActivity(String('lol'));
-
+  console.log("JOined")
 });
 
 s4d.client.on('message', async (s4dmessage) => {
   if ((s4dmessage.content) == ';help') {
-    (s4dmessage.member).send(
+    console.log("got message")
+    (s4dmessage.author).send(
             {
                 embed: {
                     title: ';help',
@@ -89,6 +90,5 @@ s4d.client.on('message', async (s4dmessage) => {
   }
 
 });
-
-                s4d;
+s4d;
             

@@ -36,7 +36,19 @@ s4d.client.on('raw', async (packet) => {
         s4d.client.emit(packet.t, guild, channel, message, member, packet.d.emoji.name);
     }
 });
-s4d.client.login(process.env.TOKEN).catch((e) => {
+var Jokes, RandomJokes;
+
+function listsGetRandomItem(list, remove) {
+    var x = Math.floor(Math.random() * list.length);
+    if (remove) {
+        return list.splice(x, 1)[0];
+    } else {
+        return list[x];
+    }
+}
+
+
+s4d.client.login('ODU1OTU1NjcyNzI1MzIzNzg1.YM6A1w.nex1mqyyejkQUpAL68QZg7XE1I4').catch((e) => {
     s4d.tokenInvalid = true;
     s4d.tokenError = e;
 });
@@ -91,6 +103,40 @@ s4d.client.on('message', async (s4dmessage) => {
                 }
 
             }
+        });
+    } else if ((s4dmessage.content) == '!jokes') {
+        Jokes = ['Why do we ask actors to "break a leg"?', 'Hear new restaurant named Karma?', 'Did you hear about the claustrophobic astronaut?', "Why does scientist don't trust atoms?", 'A man tells his doctor, “Doc, help me. I’m addicted to Twitter!” What did the doc say?', 'What’s the different between a cat and a comma?', 'What did the left eye say to the right eye?', 'What do you call a fake noodle?', 'What did the shark say when he ate the clownfish?'];
+        RandomJokes = listsGetRandomItem(Jokes, false);
+        (s4dmessage.channel).send(RandomJokes);
+        (s4dmessage.channel).awaitMessages((m) => m.author.id === (s4dmessage.member).id, {
+            time: (5 * 60 * 1000),
+            max: 1
+        }).then(async (collected) => {
+            s4d.reply = collected.first().content;
+            if (RandomJokes == 'Why do we ask actors to "break a leg"?') {
+                s4dmessage.channel.send(String('Because every play has a cast'));
+            } else if (RandomJokes == 'Hear new restaurant named Karma?') {
+                s4dmessage.channel.send(String('Theres no menu,you get what you deserve'));
+            } else if (RandomJokes == 'Did you hear about the claustrophobic astronaut?') {
+                s4dmessage.channel.send(String('He just needed a little space'));
+            } else if (RandomJokes == "Why does scientist don't trust atoms?") {
+                s4dmessage.channel.send(String('Because atoms make everything up! 🤣'));
+            } else if (RandomJokes == 'A man tells his doctor, “Doc, help me. I’m addicted to Twitter!” What did the doc say?') {
+                s4dmessage.channel.send(String("Sorry,I don't follow you"));
+            } else if (RandomJokes == 'What’s the different between a cat and a comma?') {
+                s4dmessage.channel.send(String('A cat has claws at the end of paws; A comma is a pause at the end of a clause.'));
+            } else if (RandomJokes == 'What did the left eye say to the right eye?') {
+                s4dmessage.channel.send(String('Between you and me, something smells.'));
+            } else if (RandomJokes == 'What do you call a fake noodle?') {
+                s4dmessage.channel.send(String('An Impasta!'));
+            } else if (RandomJokes == 'What did the shark say when he ate the clownfish?') {
+                s4dmessage.channel.send(String('This tastes funny!'));
+            }
+
+            s4d.reply = null;
+        }).catch(async (e) => {
+            console.error(e);
+            s4dmessage.channel.send(String('Hey,try again! You didnt reply me :( '));
         });
     }
 

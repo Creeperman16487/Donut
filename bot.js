@@ -48,7 +48,7 @@ function listsGetRandomItem(list, remove) {
 }
 
 
-s4d.client.login('ODU1OTU1NjcyNzI1MzIzNzg1.YM6A1w.nex1mqyyejkQUpAL68QZg7XE1I4').catch((e) => {
+s4d.client.login(process.env.TOKEN).catch((e) => {
     s4d.tokenInvalid = true;
     s4d.tokenError = e;
 });
